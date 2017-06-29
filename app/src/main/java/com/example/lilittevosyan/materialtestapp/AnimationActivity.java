@@ -20,16 +20,22 @@ import java.util.ArrayList;
  * status bar and navigation/system bar) with user interaction.
  */
 public class AnimationActivity extends AppCompatActivity {
-
+	LottieAnimationView animationView;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.animation);
-		LottieAnimationView animationView = (LottieAnimationView) findViewById(R.id.animation_view);
+		animationView = (LottieAnimationView) findViewById(R.id.animation_view);
 		animationView.setAnimation("toggle_switch.json");
-		animationView.loop(true);
-		animationView.playAnimation();
+		animationView.loop(false);
+		animationView.setSpeed(5);
+		animationView.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				animationView.playAnimation();
+			}
+		});
 	}
 
 }

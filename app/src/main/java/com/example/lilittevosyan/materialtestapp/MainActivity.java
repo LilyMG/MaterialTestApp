@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.GridView;
+
+import java.util.ArrayList;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -82,12 +85,19 @@ public class MainActivity extends AppCompatActivity {
 			return false;
 		}
 	};
+	private GridView gridView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_main);
+		gridView = (GridView) findViewById(R.id.grid_view);
+		GridItem item1 = new GridItem();
+		ArrayList<GridItem> items = new ArrayList<>();
+		items.add(item1);
+		ItemAdapter<GridItem> itemAdapter = new ItemAdapter<>(this, R.layout.item, items);
+		gridView.setAdapter(itemAdapter);
 
 		mVisible = true;
 		mControlsView = findViewById(R.id.fullscreen_content_controls);
